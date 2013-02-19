@@ -350,6 +350,57 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 
 	}
 
+	/** EVENTS - http://docs.chargify.com/api-events **/
+
+	public any function getEvents(
+		any page="",
+		any per_page="",
+		any since_id="",
+		any max_id="",
+		any direction=""
+	){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl()
+			& '/events.'
+			& getReturnDataFormat());
+
+		service = addUrlParams(service,arguments);
+
+		var response = call(service);
+
+		return response;
+
+	}
+
+	public any function getSubscriptionEvents(
+		required any subscription_id,
+		any page="",
+		any per_page="",
+		any since_id="",
+		any max_id="",
+		any direction=""
+	){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl()
+			& '/subscriptions/#arguments.subscription_id#/events.'
+			& getReturnDataFormat());
+
+		service = addUrlParams(service,arguments,"subscription_id");
+
+		var response = call(service);
+
+		return response;
+
+	}
+
+	/** METERED USAGE - http://docs.chargify.com/api-metered-usage **/
+
+	/** MIGRATIONS - http://docs.chargify.com/api-migrations **/
+
 	/** PRODUCTS - http://docs.chargify.com/api-products **/
 
 	public any function getProducts(){
@@ -366,7 +417,208 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 
 	}
 
+	public any function getProductFamilyProducts(required any product_family_id){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl()
+			& '/product_families/#arguments.product_family_id#/products.'
+			& getReturnDataFormat());
+
+		var response = call(service);
+
+		return response;
+
+	}
+
+	public any function getProduct(required any product_id){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl()
+			& '/products/#arguments.product_id#.'
+			& getReturnDataFormat());
+
+		var response = call(service);
+
+		return response;
+
+	}
+
+	public any function getProductByHandle(required any product_handle){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl()
+			& '/products/handle/#arguments.product_handle#.'
+			& getReturnDataFormat());
+
+		var response = call(service);
+
+		return response;
+
+	}
+
+	public any function createProduct(required any product){
+
+		var service = createHTTPService("POST");
+
+		service.setUrl( getBaseUrl()
+			& '/products.'
+			& getReturnDataFormat() );
+
+		service = addParams(service,arguments.product);
+
+		var response = call(service);
+
+		return response;
+
+	}
+
 	/** SUBSCRIPTIONS **/
+
+	public any function getSubscriptions(any page="", any per_page=""){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl()
+			& '/subscriptions.'
+			& getReturnDataFormat());
+
+		service = addUrlParams(service,arguments);
+
+		var response = call(service);
+
+		return response;
+
+	}
+
+	public any function getSubscription(required any subscription_id){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl()
+			& '/subscriptions/#arguments.subscription_id#.'
+			& getReturnDataFormat());
+
+		var response = call(service);
+
+		return response;
+
+	}
+
+	public any function createSubscription(required any subscription){
+
+		var service = createHTTPService("POST");
+
+		service.setUrl( getBaseUrl()
+			& '/subscriptions.'
+			& getReturnDataFormat() );
+
+		service = addParams(service,arguments.subscription);
+
+		var response = call(service);
+
+		return response;
+
+	}
+
+	public any function updateSubscription(required any subscription){
+
+		var service = createHTTPService("PUT");
+
+		service.setUrl( getBaseUrl()
+			& '/subscriptions/#arguments.subscription.id#.'
+			& getReturnDataFormat() );
+
+		service = addParams(service,arguments.subscription);
+
+		var response = call(service);
+
+		return response;
+
+	}
+
+	public any function deleteSubscription(required any subscription_id, string cancellation_message=""){
+
+		var service = createHTTPService("DELETE");
+
+		service.setUrl( getBaseUrl()
+			& '/subscriptions/#arguments.subscription_id#.'
+			& getReturnDataFormat() );
+
+		service = addUrlParams(service,arguments,"subscription_id");
+
+		var response = call(service);
+
+		return response;
+
+	}
+
+	public any function delayCancelSubscription(required any subscription_id, string cancel_at_end_of_period=1){
+
+		var service = createHTTPService("PUT");
+
+		service.setUrl( getBaseUrl()
+			& '/subscriptions/#arguments.subscription_id#.'
+			& getReturnDataFormat() );
+
+		service = addUrlParams(service,arguments,"subscription_id");
+
+		var response = call(service);
+
+		return response;
+
+	}
+
+	public any function reactivateSubscription(
+		required any subscription_id,
+		any include_trial="",
+		any preserve_balance="",
+		string coupon_code=""
+	){
+
+		var service = createHTTPService("PUT");
+
+		service.setUrl( getBaseUrl()
+			& '/subscriptions/#arguments.subscription.id#/reactivate.'
+			& getReturnDataFormat() );
+
+		service = addUrlParams(service,arguments,"subscription_id");
+
+		var response = call(service);
+
+		return response;
+
+	}
+
+	public any function resetBalanceSubscription(required any subscription_id){
+
+		var service = createHTTPService("PUT");
+
+		service.setUrl( getBaseUrl()
+			& '/subscriptions/#arguments.subscription.id#/reset_balance.'
+			& getReturnDataFormat() );
+
+		var response = call(service);
+
+		return response;
+
+	}
+
+	public any function getCustomerSubscriptions(required any customer_id){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl()
+			& '/customers/#arguments.customer_id#/subscriptions.'
+			& getReturnDataFormat());
+
+		var response = call(service);
+
+		return response;
+
+	}
 
 	public any function addSubscriptionCoupon(required any subscription_id, required string coupon_code){
 
@@ -467,6 +719,25 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 						value=trim(p[key])
 					);
 				}
+			}
+		}
+
+		return s;
+	}
+
+	private any function addUrlParams( required any service, required struct params, string exclude_list="" ){
+
+		var s = arguments.service;
+		var p = arguments.params;
+		var e = arguments.exclude_list;
+
+		for( key in p ){
+			if( listFindNoCase(e,key) eq 0 AND len(p[key]) gt 0 ){
+				s.addParam(
+					type="url",
+					name=key,
+					value=trim(p[key])
+				);
 			}
 		}
 
