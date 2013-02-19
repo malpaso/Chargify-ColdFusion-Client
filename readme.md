@@ -20,10 +20,12 @@ Example usage:
 		chargify = createObject("component","Chargify").init(settings);
 		// create a customer
 		customer = {
-			first_name = "",
-			last_name = "",
-			email = "",
-			reference = "unique identifier in your app"
+			customer = {
+				first_name = "",
+				last_name = "",
+				email = "",
+				reference = "unique identifier in your app"
+			}
 		};
 		new_customer = chargify.createCustomer(customer);
 	</cfscript>
