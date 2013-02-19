@@ -650,6 +650,71 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 
 	}
 
+	/** TRANSACTIONS - http://docs.chargify.com/api-transactions **/
+
+	public any function getTransactions(
+		array array_kinds=arrayNew(1),
+		any since_id="",
+		any max_id="",
+		any since_date="",
+		any until_date="",
+		any page="",
+		any per_page=""
+	){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl()
+			& '/transactions.'
+			& getReturnDataFormat());
+
+		service = addUrlParams(service,arguments,"array_kinds");
+
+		var response = call(service);
+
+		return response;
+
+	}
+
+	public any function getTransaction(required any transaction_id){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl()
+			& '/transactions/#arguments.transaction_id#.'
+			& getReturnDataFormat());
+
+		var response = call(service);
+
+		return response;
+
+	}
+
+	public any function getSubscriptionTransactions(
+		required any subscription_id,
+		array array_kinds=arrayNew(1),
+		any since_id="",
+		any max_id="",
+		any since_date="",
+		any until_date="",
+		any page="",
+		any per_page=""
+	){
+
+		var service = createHTTPService("GET");
+
+		service.setUrl(	getBaseUrl()
+			& '/subscriptions/#arguments.subscription_id#/transactions.'
+			& getReturnDataFormat());
+
+		service = addUrlParams(service,arguments,"subscription_id,array_kinds");
+
+		var response = call(service);
+
+		return response;
+
+	}
+
 	/** PRIVATE **/
 
 	private any function call(required any httpService){
@@ -738,6 +803,19 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 					name=key,
 					value=trim(p[key])
 				);
+			}
+			// check the exclude_list for prefixed 'array_' keys and add
+			if( listFindNoCase(e,key) AND left(key,6) eq "array_" ){
+				var _arr = p[key];
+				var param_name = right(key,len(key)-6);
+				// loop over the array and add the name value pairs to the service
+				for( k=1;k<=arrayLen(_arr);k++){
+					s.addParam(
+						type="url",
+						name="#param_name#[]",
+						value=_arr[k]
+					);
+				}
 			}
 		}
 
