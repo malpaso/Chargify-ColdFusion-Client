@@ -1,13 +1,13 @@
 component name="Chargify" output="false" accessors="true" hint="A ColdFusion wrapper for the Chargify API" {
 
-	property type="string" 	name="service"				default="Chargify";
-	property type="string"  name="apiKey"				default="";
-	property type="string"  name="subdomain"			default="";
-	property type="string" 	name="baseUrl"				default="";
-	property type="string" 	name="username"				default="";
-	property type="string" 	name="password"				default="";
-	property type="string" 	name="returnDataFormat"		default="json";
-	property type="boolean" name="debugMode"			default=false;
+	property type="string" 	name="service"				default="Chargify"	getter=true setter=true;
+	property type="string"  name="apiKey"				default=""			getter=true setter=true;
+	property type="string"  name="subdomain"			default=""			getter=true setter=true;
+	property type="string" 	name="baseUrl"				default=""			getter=true setter=true;
+	property type="string" 	name="username"				default=""			getter=true setter=true;
+	property type="string" 	name="password"				default=""			getter=true setter=true;
+	property type="string" 	name="returnDataFormat"		default="json"		getter=true setter=true;
+	property type="boolean" name="debugMode"			default=false		getter=true setter=true;
 
 	public any function init( required struct settings ){
 
@@ -45,9 +45,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 			& getReturnDataFormat()
 			& '?page=#arguments.page#');
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -61,9 +59,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 
 		service = addParams(service,arguments.allocation);
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -79,9 +75,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 
 		service = addParams(service,arguments.charge);
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -95,9 +89,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 			& '/subscriptions/#arguments.subscription_id#/components.'
 			& getReturnDataFormat());
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -109,9 +101,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 			& '/subscriptions/#arguments.subscription_id#/components/#arguments.component_id#.'
 			& getReturnDataFormat());
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -124,9 +114,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 			& getReturnDataFormat()
 			& '?include_archived=#arguments.include_archived#');
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 	}
 
 	public any function getProductFamilyComponent(required any product_family_id, required any component_id){
@@ -137,9 +125,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 			& '/product_families/#arguments.product_family_id#/components/#arguments.component_id#.'
 			& getReturnDataFormat());
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -157,9 +143,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 
 		service = addParams(service,arguments.component);
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -175,9 +159,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 
 		service = addParams(service,arguments.coupon);
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -189,9 +171,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 			& '/coupons/#arguments.coupon_id#.'
 			& getReturnDataFormat() );
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -205,9 +185,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 
 		service = addParams(service,arguments.coupon);
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -219,9 +197,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 			& '/coupons/#arguments.coupon_id#.'
 			& getReturnDataFormat() );
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -233,9 +209,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 			& '/coupons/#arguments.coupon_id#/validate.'
 			& getReturnDataFormat() );
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -248,9 +222,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 			& getReturnDataFormat()
 			& '?code=#arguments.code#' );
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -262,9 +234,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 			& '/coupons/#arguments.coupon_id#/usage.'
 			& getReturnDataFormat() );
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -279,9 +249,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 			& getReturnDataFormat()
 			& '?page=#arguments.page#&direction=#arguments.direction#');
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -294,9 +262,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 			& getReturnDataFormat()
 			& '?reference=#arguments.reference#' );
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -325,9 +291,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 
 		service = addParams(service,arguments.customer);
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -340,9 +304,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 			& arguments.customer.id & '.'
 			& getReturnDataFormat() );
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -364,9 +326,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 
 		service = addUrlParams(service,arguments);
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -387,9 +347,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 
 		service = addUrlParams(service,arguments,"subscription_id");
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -407,9 +365,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 			& '/products.'
 			& getReturnDataFormat());
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -421,9 +377,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 			& '/product_families/#arguments.product_family_id#/products.'
 			& getReturnDataFormat());
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -435,9 +389,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 			& '/products/#arguments.product_id#.'
 			& getReturnDataFormat());
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -449,9 +401,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 			& '/products/handle/#arguments.product_handle#.'
 			& getReturnDataFormat());
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -465,9 +415,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 
 		service = addParams(service,arguments.product);
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -483,9 +431,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 
 		service = addUrlParams(service,arguments);
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -497,9 +443,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 			& '/subscriptions/#arguments.subscription_id#.'
 			& getReturnDataFormat());
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -513,9 +457,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 
 		service = addParams(service,arguments.subscription);
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -529,9 +471,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 
 		service = addParams(service,arguments.subscription);
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -545,9 +485,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 
 		service = addUrlParams(service,arguments,"subscription_id");
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -561,9 +499,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 
 		service = addUrlParams(service,arguments,"subscription_id");
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -582,9 +518,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 
 		service = addUrlParams(service,arguments,"subscription_id");
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -596,9 +530,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 			& '/subscriptions/#arguments.subscription.id#/reset_balance.'
 			& getReturnDataFormat() );
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -610,9 +542,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 			& '/customers/#arguments.customer_id#/subscriptions.'
 			& getReturnDataFormat());
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -625,9 +555,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 			& getReturnDataFormat()
 			& '?coupon_code=#arguments.coupon_code#' );
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -640,9 +568,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 			& getReturnDataFormat()
 			& '?coupon_code=#arguments.coupon_code#' );
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -666,9 +592,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 
 		service = addUrlParams(service,arguments,"array_kinds");
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -680,9 +604,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 			& '/transactions/#arguments.transaction_id#.'
 			& getReturnDataFormat());
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -705,9 +627,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 
 		service = addUrlParams(service,arguments,"subscription_id,array_kinds");
 
-		var response = call(service);
-
-		return response;
+		return call(service);
 
 	}
 
@@ -718,7 +638,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 		var result = arguments.httpService.send().getPrefix();
 
 		// log while in development
-		if( getDebugMode() ){
+		if( this.debugMode ){
 			writeLog(type="information",file="Chargify",text=toString(result.fileContent));
 		}
 
@@ -726,7 +646,9 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 			throw(type=getService(),errorcode="#getService()#_unresponsive", message="The #getService()# server did not respond.", detail="The #getService()# server did not respond.");
 		}
 
-		return createObject("component","ChargifyResponse").init(result,getReturnDataFormat());
+		var response = createObject("component","ChargifyResponse").init( result, getReturnDataFormat() );
+
+		return response; // deserializeJSON(result.fileContent);
 	}
 
 	private HTTP function createHTTPService(string urlmethod='POST', any httptimeout=30) {
