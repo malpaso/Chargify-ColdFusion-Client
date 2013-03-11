@@ -4,6 +4,7 @@ component name="Chargify" output="false" accessors="true" hint="A ColdFusion wra
 	property type="string"  name="apiKey"				default=""			getter=true setter=true;
 	property type="string"  name="subdomain"			default=""			getter=true setter=true;
 	property type="string" 	name="baseUrl"				default=""			getter=true setter=true;
+	property type="string" 	name="secret"				default=""			getter=true setter=true;
 	property type="string" 	name="username"				default=""			getter=true setter=true;
 	property type="string" 	name="password"				default=""			getter=true setter=true;
 	property type="string" 	name="returnDataFormat"		default="json"		getter=true setter=true;
